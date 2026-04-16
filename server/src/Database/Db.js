@@ -8,7 +8,7 @@ const connectDB = async () => {
     const pass = encodeURIComponent(process.env.DB_PASSWORD);
     const host = process.env.DB_HOST;
     const db = process.env.DB_NAME;
-    const uri = `mongodb+srv://${user}:${pass}${host}/${db}?retryWrites=true&w=majority`;
+    const uri = `mongodb+srv://${user}:${pass}@${host}/${db}?retryWrites=true&w=majority`;
 
     await mongoose.connect(uri);
     console.log("✅ MongoDB connected successfully");
