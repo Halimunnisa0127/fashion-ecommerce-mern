@@ -1,21 +1,27 @@
 // Database/Db.js
 const mongoose = require('mongoose');
-require("dotenv").config();
 
 const connectDB = async () => {
   try {
-    const user = process.env.DB_USER;
-    const pass = encodeURIComponent(process.env.DB_PASSWORD);
-    const host = process.env.DB_HOST;
-    const db = process.env.DB_NAME;
-    const uri = `mongodb+srv://${user}:${pass}@${host}/${db}?retryWrites=true&w=majority`;
+    const uri = process.env.DB_URL;
 
-    await mongoose.connect(uri);
+    if (!uri) {
+      throw new Error("DB_URL is not defined in environment variables");
+    }
+
+    await mongoose.connect(uri, {
+      useNewUrlParser: true,
+      useUnifiedTopology: true,
+    });
+
     console.log("✅ MongoDB connected successfully");
-    return mongoose.connection;
+
   } catch (error) {
-    console.error('❌ MongoDB connection error:', error.message);
-    throw error;
+    console.error("❌ MongoDB connection failed:", {
+      message: error.message,
+    });
+
+    process.exit(1); // stop app
   }
 };
 
