@@ -1,4 +1,4 @@
-const Product = require("../Schemas/ProductSchema");
+const Product = require("../Schemas/productSchema");
 const mongoose = require("mongoose");
 
 // ✅ CREATE PRODUCT
