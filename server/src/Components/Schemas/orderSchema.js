@@ -2,7 +2,7 @@
 // Schemas/orderSchema.js (or Components/Schemas/orderSchema.js)
 const mongoose = require("mongoose");
 
-// ✅ Check if model already exists before creating
+// Check if model already exists before creating
 const orderSchema = new mongoose.Schema(
   {
     userId: { type: mongoose.Schema.Types.ObjectId, ref: "SignUp", required: true },
@@ -34,5 +34,5 @@ const orderSchema = new mongoose.Schema(
   { timestamps: true }
 );
 
-// ✅ Prevent model overwrite
+// Prevent model overwrite
 module.exports = mongoose.models.Order || mongoose.model("Order", orderSchema);

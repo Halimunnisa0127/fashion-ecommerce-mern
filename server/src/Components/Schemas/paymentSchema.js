@@ -13,7 +13,7 @@ const paymentSchema = new mongoose.Schema(
       default: "created",
     },
     userId: { type: mongoose.Schema.Types.ObjectId, ref: "SignUp" },
-    // ✅ Added items field — payment route saves items here
+    // Added items field — payment route saves items here
     items: [
       {
         productId: { type: String },
@@ -24,5 +24,5 @@ const paymentSchema = new mongoose.Schema(
   { timestamps: true }
 );
 
-// ✅ Prevent model overwrite
+// Prevent model overwrite
 module.exports = mongoose.models.Payment || mongoose.model("Payment", paymentSchema);

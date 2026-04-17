@@ -8,7 +8,7 @@ const Order = require("../../../../fashion-ecommerce-app/my-backend-app/Componen
 const verifyToken = require("../../../../fashion-ecommerce-app/my-backend-app/Components/middleware/auth.js");
 const verifyAdmin = require("../../../../fashion-ecommerce-app/my-backend-app/Components/middleware/admin.js");
 
-// ================= DASHBOARD STATS =================
+// DASHBOARD STATS 
 router.get("/admin/stats", verifyToken, verifyAdmin, async (req, res) => {
   try {
     const totalUsers = await User.countDocuments();
@@ -41,7 +41,7 @@ router.get("/admin/stats", verifyToken, verifyAdmin, async (req, res) => {
   }
 });
 
-// ================= USER MANAGEMENT =================
+// USER MANAGEMENT
 // Get all users
 router.get("/admin/users", verifyToken, verifyAdmin, async (req, res) => {
   try {
@@ -128,7 +128,7 @@ router.delete("/admin/users/:id", verifyToken, verifyAdmin, async (req, res) => 
   }
 });
 
-// ================= PRODUCT MANAGEMENT =================
+// PRODUCT MANAGEMENT=
 // Get all products (admin view)
 router.get("/admin/products", verifyToken, verifyAdmin, async (req, res) => {
   try {
@@ -227,7 +227,7 @@ router.delete("/admin/products/:id", verifyToken, verifyAdmin, async (req, res) 
   }
 });
 
-// ================= ORDER MANAGEMENT =================
+// ORDER MANAGEMENT
 // Get all orders
 router.get("/admin/orders", verifyToken, verifyAdmin, async (req, res) => {
   try {
@@ -276,7 +276,7 @@ router.put("/admin/orders/:id/status", verifyToken, verifyAdmin, async (req, res
   }
 });
 
-// ================= ACTIVITY LOGS =================
+// ACTIVITY LOGS
 router.get("/admin/activities", verifyToken, verifyAdmin, async (req, res) => {
   try {
     // Get recent user registrations

@@ -1,6 +1,6 @@
 const Cart = require("../Schemas/cartSchema");
 
-// ✅ GET
+//  GET
 exports.getCart = async (req, res) => {
     try {
         const userId = req.user.id;
@@ -8,7 +8,7 @@ exports.getCart = async (req, res) => {
         let cart = await Cart.findOne({ userId })
             .populate("items.productId");
 
-        // ✅ IMPORTANT FIX
+        //  IMPORTANT FIX
         if (!cart) {
             cart = await Cart.create({
                 userId,
@@ -23,7 +23,7 @@ exports.getCart = async (req, res) => {
         res.status(500).json({ message: "Failed to fetch cart" });
     }
 };
-// ✅ ADD
+//  ADD
 exports.addToCart = async (req, res) => {
     try {
         const userId = req.user.id;
@@ -39,7 +39,7 @@ exports.addToCart = async (req, res) => {
             cart = await Cart.create({ userId, items: [] });
         }
 
-        // 🛡️ Robust finding (handles null productId or mismatched types)
+        // Robust finding (handles null productId or mismatched types)
         const index = cart.items.findIndex(
             (item) => {
                 if (!item.productId) return false;
@@ -64,7 +64,7 @@ exports.addToCart = async (req, res) => {
     }
 };
 
-// ✅ UPDATE
+// UPDATE
 exports.updateCart = async (req, res) => {
     try {
         const userId = req.user.id;
@@ -92,7 +92,7 @@ exports.updateCart = async (req, res) => {
     }
 };
 
-// ✅ DELETE
+// DELETE
 exports.deleteCartItem = async (req, res) => {
     try {
         const userId = req.user.id;

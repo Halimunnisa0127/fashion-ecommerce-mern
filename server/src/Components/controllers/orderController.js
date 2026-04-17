@@ -2,7 +2,7 @@
 const Order = require("../Schemas/orderSchema.js");
 const Cart = require("../Schemas/cartSchema.js");
 
-// ✅ CREATE ORDER
+//  CREATE ORDER
 exports.createOrder = async (req, res) => {
   try {
     const userId = req.user.id;
@@ -54,13 +54,13 @@ exports.createOrder = async (req, res) => {
   }
 };
 
-// ✅ GET USER ORDERS
+//  GET USER ORDERS
 exports.getOrders = async (req, res) => {
   try {
     const userId = req.user.id;
     const orders = await Order.find({ userId })
       .sort({ createdAt: -1 })
-      .populate('items.productId', 'title price image'); // ✅ Add populate
+      .populate('items.productId', 'title price image'); //  Add populate
     res.json(orders);
   } catch (error) {
     console.error("GET ORDERS ERROR:", error);
@@ -68,11 +68,11 @@ exports.getOrders = async (req, res) => {
   }
 };
 
-// ✅ GET SINGLE ORDER
+//  GET SINGLE ORDER
 exports.getOrderById = async (req, res) => {
   try {
     const order = await Order.findById(req.params.id)
-      .populate('items.productId', 'title price image'); // ✅ Add populate
+      .populate('items.productId', 'title price image'); //  Add populate
     if (!order) {
       return res.status(404).json({ message: "Order not found" });
     }

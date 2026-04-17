@@ -13,7 +13,7 @@ const razorpay = new Razorpay({
     key_secret: process.env.RAZORPAY_KEY_SECRET,
 });
 
-// ✅ CREATE ORDER
+// CREATE ORDER
 router.post("/create-order", verifyToken, async (req, res) => {
     try {
         const { items } = req.body;
@@ -58,7 +58,7 @@ router.post("/create-order", verifyToken, async (req, res) => {
     }
 });
 
-// ✅ VERIFY PAYMENT
+// VERIFY PAYMENT
 router.post("/verify-payment", verifyToken, async (req, res) => {
     try {
         const {
@@ -68,7 +68,7 @@ router.post("/verify-payment", verifyToken, async (req, res) => {
             items,
         } = req.body;
 
-        // 🔐 Signature verify
+        // Signature verify
         const body = razorpay_order_id + "|" + razorpay_payment_id;
 
         const expectedSignature = crypto
@@ -80,7 +80,7 @@ router.post("/verify-payment", verifyToken, async (req, res) => {
             return res.status(400).json({ success: false, message: "Invalid payment" });
         }
 
-        // 🔁 Prevent duplicate
+        // Prevent duplicate
         const existing = await Payment.findOne({
             paymentId: razorpay_payment_id,
         });
@@ -89,11 +89,11 @@ router.post("/verify-payment", verifyToken, async (req, res) => {
             return res.json({ success: true, message: "Already processed" });
         }
 
-        // 💳 Get real payment from Razorpay
+        // Get real payment from Razorpay
         const payment = await razorpay.payments.fetch(razorpay_payment_id);
         const paidAmount = payment.amount / 100;
 
-        // 🔁 Recalculate expected amount from DB
+        // Recalculate expected amount from DB
         const productIds = items.map((item) => item.productId);
 
         const products = await Product.find({
@@ -119,7 +119,7 @@ router.post("/verify-payment", verifyToken, async (req, res) => {
             });
         }
 
-        // ✅ Save payment record — using req.user.id (set by auth middleware)
+        // Save payment record — using req.user.id (set by auth middleware)
         await Payment.create({
             orderId: razorpay_order_id,
             paymentId: razorpay_payment_id,

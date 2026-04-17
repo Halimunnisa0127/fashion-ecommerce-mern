@@ -10,5 +10,5 @@ const productSchema = new mongoose.Schema({
   rating: Object
 }, { timestamps: true });
 
-// ✅ FIXED LINE
+// FIXED LINE
 module.exports = mongoose.models.Product || mongoose.model("Product", productSchema);

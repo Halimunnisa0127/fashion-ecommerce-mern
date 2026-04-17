@@ -1,7 +1,7 @@
 const Product = require("../Schemas/productSchema");
 const mongoose = require("mongoose");
 
-// ✅ CREATE PRODUCT
+// CREATE PRODUCT
 exports.createProduct = async (req, res) => {
   try {
     const product = await Product.create(req.body);
@@ -11,7 +11,7 @@ exports.createProduct = async (req, res) => {
   }
 };
 
-// ✅ GET ALL PRODUCTS (WITH PAGINATION)
+// GET ALL PRODUCTS (WITH PAGINATION)
 exports.getProducts = async (req, res) => {
   try {
     const page = parseInt(req.query.page) || 1;
@@ -29,19 +29,19 @@ exports.getProducts = async (req, res) => {
   }
 };
 
-// ✅ GET SINGLE PRODUCT (WITH VALIDATION)
+// GET SINGLE PRODUCT (WITH VALIDATION)
 exports.getProduct = async (req, res) => {
   try {
     const id = req.params.id;
 
-    // 🔒 validate ObjectId
+    // validate ObjectId
     if (!mongoose.Types.ObjectId.isValid(id)) {
       return res.status(400).json({ message: "Invalid product ID" });
     }
 
     const product = await Product.findById(id);
 
-    // 🔒 check if product exists
+    // check if product exists
     if (!product) {
       return res.status(404).json({ message: "Product not found" });
     }
@@ -53,7 +53,7 @@ exports.getProduct = async (req, res) => {
   }
 };
 
-// ✅ UPDATE PRODUCT (WITH VALIDATION)
+// UPDATE PRODUCT (WITH VALIDATION)
 exports.updateProduct = async (req, res) => {
   try {
     const id = req.params.id;
@@ -79,7 +79,7 @@ exports.updateProduct = async (req, res) => {
   }
 };
 
-// ✅ DELETE PRODUCT (WITH VALIDATION)
+// DELETE PRODUCT (WITH VALIDATION)
 exports.deleteProduct = async (req, res) => {
   try {
     const id = req.params.id;

@@ -8,7 +8,7 @@ const crypto = require("crypto");
 const User = require("../Schemas/SignupSchema.js");
 const sendEmail = require("../utils/mail");
 
-// ================= SIGNUP =================
+// SIGNUP 
 router.post("/signup", async (req, res) => {
   const { Username, Email, Phone, Userpassword, ConfirmUserpassword } = req.body;
 
@@ -56,7 +56,7 @@ router.post("/signup", async (req, res) => {
   }
 });
 
-// ================= LOGIN =================
+// LOGIN 
 // routes/auth.js - Update login route to return role
 router.post("/login", async (req, res) => {
   try {
@@ -87,7 +87,7 @@ router.post("/login", async (req, res) => {
         username: user.Username,
         phone: user.Phone,
         email: user.Email,
-        role: user.role || "user"  // ✅ Include role in response
+        role: user.role || "user"  // Include role in response
       },
       message: "Login successful",
     });
@@ -96,7 +96,7 @@ router.post("/login", async (req, res) => {
     res.status(500).json({ message: "Server error" });
   }
 });
-// ================= FORGOT PASSWORD =================
+// FORGOT PASSWORD
 // routes/auth.js - Update the forgot-password route
 // routes/auth.js - Professional version
 
@@ -206,7 +206,7 @@ router.post("/verify-otp", async (req, res) => {
     });
   }
 });
-// ================= RESET PASSWORD =================
+// RESET PASSWORD
 router.post("/reset-password", async (req, res) => {
   console.log("🔄 Reset password request:", req.body);
 
@@ -240,12 +240,12 @@ router.post("/reset-password", async (req, res) => {
     user.otpExpiry = undefined;
 
     await user.save();
-    console.log("✅ Password reset successful for:", email);
+    console.log(" Password reset successful for:", email);
 
     res.json({ message: "Password reset successful" });
 
   } catch (err) {
-    console.error("❌ Reset password error:", err);
+    console.error(" Reset password error:", err);
     res.status(500).json({ message: "Server error", error: err.message });
   }
 });

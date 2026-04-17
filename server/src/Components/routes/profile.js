@@ -5,7 +5,7 @@ const bcrypt = require("bcryptjs");
 const User = require("../Schemas/SignupSchema.js");
 const verifyToken = require("../middleware/auth.js");
 
-// ✅ GET user profile
+// GET user profile
 router.get("/profile", verifyToken, async (req, res) => {
   try {
     const user = await User.findById(req.user.id)
@@ -19,7 +19,7 @@ router.get("/profile", verifyToken, async (req, res) => {
       id: user._id,
       username: user.Username,
       email: user.Email,
-      phone: user.Phone, // ✅ Added phone
+      phone: user.Phone, // Added phone
       role: user.role || "user",
       createdAt: user.createdAt || new Date(),
     });
@@ -30,7 +30,7 @@ router.get("/profile", verifyToken, async (req, res) => {
   }
 });
 
-// ✅ UPDATE profile
+// UPDATE profile
 router.put("/profile", verifyToken, async (req, res) => {
   const { username, email, phone } = req.body;
   
@@ -60,7 +60,7 @@ router.put("/profile", verifyToken, async (req, res) => {
       user.Email = email;
     }
 
-    // ✅ Update phone
+    // Update phone
     if (phone) {
       user.Phone = phone;
     }
@@ -85,7 +85,7 @@ router.put("/profile", verifyToken, async (req, res) => {
   }
 });
 
-// ✅ CHANGE password (Uncommented and fixed)
+// CHANGE password (Uncommented and fixed)
 router.put("/profile/change-password", verifyToken, async (req, res) => {
   const { currentPassword, newPassword } = req.body;
   
@@ -124,7 +124,7 @@ router.put("/profile/change-password", verifyToken, async (req, res) => {
   }
 });
 
-// ✅ DELETE account
+// DELETE account
 router.delete("/profile", verifyToken, async (req, res) => {
   try {
     const user = await User.findByIdAndDelete(req.user.id);

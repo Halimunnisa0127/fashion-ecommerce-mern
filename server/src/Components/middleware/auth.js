@@ -15,7 +15,7 @@ const verifyToken = (req, res, next) => {
     const decoded = jwt.verify(token, process.env.JWT_SECRET);
     console.log("Decoded Token:", decoded);
     // req.user = decoded; // { id: ... }
-     req.user = { id: decoded.id }; // ✅ SINGLE FORMAT
+     req.user = { id: decoded.id }; // SINGLE FORMAT
     next();
   } catch (error) {
     console.error("Token verification error:", error);

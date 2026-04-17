@@ -13,7 +13,7 @@ const CartRoute = require('./src/Components/routes/cart.js');
 const ProfileRoute = require('./src/Components/routes/profile.js');
 const PaymentRoute = require('./src/Components/routes/payment.js');
 const AdminRoute = require('./src/Admin/admin.js');
-const OrderRoute = require('./src/Components/routes/order.js'); // ✅ Changed from order.js to orderRoutes.js
+const OrderRoute = require('./src/Components/routes/order.js'); // Changed from order.js to orderRoutes.js
 
 // Middleware
 app.use(express.json());
@@ -22,14 +22,14 @@ app.use(cors(corsOptions));
 // DB connect
 connectDB();
 
-// ✅ Routes
+// Routes
 app.use('/api', AuthRoute);
 app.use('/api/products', ProductRoute);
 app.use('/api/cart', CartRoute);
 app.use('/api', ProfileRoute);
 app.use("/api/payment", PaymentRoute);
 app.use('/api', AdminRoute);
-app.use('/api/user', OrderRoute); // ✅ Orders will be at /api/user/orders, /api/user/order/:id
+app.use('/api/user', OrderRoute); // Orders will be at /api/user/orders, /api/user/order/:id
 
 // Server
 const PORT = process.env.PORT;

@@ -1,23 +1,3 @@
-
-// const express = require("express");
-// const router = express.Router();
-
-// const {
-//   createProduct,
-//   getProducts,
-//   getProduct,
-//   updateProduct,
-//   deleteProduct
-// } = require("../controllers/productController");
-
-// router.post("/", createProduct);
-// router.get("/", getProducts);
-// router.get("/:id", getProduct);
-// router.put("/:id", updateProduct);
-// router.delete("/:id", deleteProduct);
-
-// module.exports = router;
-
 // routes/productRoutes.js
 const express = require("express");
 const router = express.Router();
@@ -32,11 +12,11 @@ const {
   deleteProduct
 } = require("../controllers/productController");
 
-// ✅ Public routes (anyone can view products)
+// Public routes (anyone can view products)
 router.get("/", getProducts);
 router.get("/:id", getProduct);
 
-// ✅ Admin only routes (only admin can modify products)
+// Admin only routes (only admin can modify products)
 router.post("/", verifyToken, verifyAdmin, createProduct);
 router.put("/:id", verifyToken, verifyAdmin, updateProduct);
 router.delete("/:id", verifyToken, verifyAdmin, deleteProduct);

@@ -9,13 +9,13 @@ const {
     getOrderById,
 } = require("../controllers/orderController");
 
-// ✅ Place order
+// Place order
 router.post("/order", verifyToken, createOrder);
 
-// ✅ Get all orders
+// Get all orders
 router.get("/orders", verifyToken, getOrders);
 
-// ✅ Get single order
+// Get single order
 router.get("/order/:id", verifyToken, getOrderById);
 
 module.exports = router;

@@ -15,9 +15,9 @@ class EmailService {
     try {
       const templatePath = path.join(__dirname, "emailTemplates", "passwordReset.html");
       this.templates.passwordReset = fs.readFileSync(templatePath, "utf8");
-      console.log("✅ Email templates loaded");
+      console.log(" Email templates loaded");
     } catch (error) {
-      console.error("❌ Failed to load templates:", error.message);
+      console.error(" Failed to load templates:", error.message);
     }
   }
 
@@ -37,14 +37,14 @@ class EmailService {
       
       this.transporter.verify((error, success) => {
         if (error) {
-          console.error("❌ Email service error:", error.message);
+          console.error("Email service error:", error.message);
           this.transporter = null;
         } else {
-          console.log("✅ Email service ready from:", process.env.EMAIL_USER);
+          console.log(" Email service ready from:", process.env.EMAIL_USER);
         }
       });
     } else {
-      console.log("⚠️ No email credentials. Using console mode.");
+      console.log(" No email credentials. Using console mode.");
     }
   }
 
@@ -88,16 +88,16 @@ class EmailService {
         const info = await this.transporter.sendMail({
           from: `"${process.env.APP_NAME || 'Fashion Store'}" <${process.env.EMAIL_USER}>`,
           to: email,
-          subject: "🔐 Password Reset OTP",
+          subject: " Password Reset OTP",
           text: plainText,
           html: htmlTemplate,
         });
         
-        console.log(`✅ Email sent to ${email}`);
+        console.log(` Email sent to ${email}`);
         return { success: true, messageId: info.messageId };
         
       } catch (error) {
-        console.error("❌ Email failed:", error.message);
+        console.error(" Email failed:", error.message);
         return { success: false, fallback: true };
       }
     }
