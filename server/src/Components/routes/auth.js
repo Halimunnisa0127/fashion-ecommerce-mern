@@ -5,7 +5,7 @@ const bcrypt = require("bcryptjs");
 const jwt = require("jsonwebtoken");
 const crypto = require("crypto");
 
-const User = require("../Schemas/SignupSchema.js");
+const User = require("../Schemas/SignupSchema");
 const sendEmail = require("../utils/mail");
 
 // SIGNUP 
