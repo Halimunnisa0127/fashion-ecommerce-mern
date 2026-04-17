@@ -32,7 +32,20 @@ app.use('/api', AdminRoute);
 app.use('/api/user', OrderRoute); // Orders will be at /api/user/orders, /api/user/order/:id
 
 // Server
-const PORT = process.env.PORT;
-app.listen(PORT, () => {
-  console.log(`Server running at http://localhost:${PORT}`);
-});
+const PORT = process.env.PORT || 5000;
+
+const startServer = async () => {
+  try {
+    await connectDB();
+
+    app.listen(PORT, () => {
+      console.log(`Server running on port ${PORT}`);
+    });
+
+  } catch (error) {
+    console.error("Server failed to start:", error.message);
+    process.exit(1);
+  }
+};
+
+startServer();

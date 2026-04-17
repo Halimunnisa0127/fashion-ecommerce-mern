@@ -9,19 +9,16 @@ const connectDB = async () => {
       throw new Error("DB_URL is not defined in environment variables");
     }
 
-    await mongoose.connect(uri, {
-      useNewUrlParser: true,
-      useUnifiedTopology: true,
-    });
+    await mongoose.connect(uri); // ✅ no options
 
-    console.log("MongoDB connected successfully");
+    console.log("✅ MongoDB connected successfully");
 
   } catch (error) {
-    console.error("MongoDB connection failed:", {
+    console.error("❌ MongoDB connection failed:", {
       message: error.message,
     });
 
-    process.exit(1); // stop app
+    process.exit(1);
   }
 };
 
