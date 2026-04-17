@@ -2,11 +2,12 @@
 const express = require("express");
 const router = express.Router();
 const bcrypt = require("bcryptjs");
-const User = require("../../../../fashion-ecommerce-app/my-backend-app/Components/Schemas/SignupSchema.js");
-const Product = require("../../../../fashion-ecommerce-app/my-backend-app/Components/Schemas/productSchema.js");
-const Order = require("../../../../fashion-ecommerce-app/my-backend-app/Components/Schemas/orderSchema.js");
-const verifyToken = require("../../../../fashion-ecommerce-app/my-backend-app/Components/middleware/auth.js");
-const verifyAdmin = require("../../../../fashion-ecommerce-app/my-backend-app/Components/middleware/admin.js");
+
+const User = require("../Components/Schemas/SignupSchema.js");
+const Product = require("../Components/Schemas/productSchema.js");
+const Order = require("../Components/Schemas/orderSchema.js");
+const verifyToken = require("../Components/middleware/auth.js");
+const verifyAdmin = require("../Components/middleware/admin.js");
 
 // DASHBOARD STATS 
 router.get("/admin/stats", verifyToken, verifyAdmin, async (req, res) => {
