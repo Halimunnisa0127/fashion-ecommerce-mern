@@ -2,9 +2,12 @@
 const express = require('express');
 const app = express();
 require("dotenv").config();
+
+const helmet = require("helmet");
 const connectDB = require('./src/Database/Db.js');
-const cors = require('cors');
 const corsOptions = require('./src/Components/CorsOptions/corsOptions.js');
+const cors = require('cors');
+
 
 // Routes
 const AuthRoute = require('./src/Components/routes/auth.js');
@@ -18,6 +21,33 @@ const OrderRoute = require('./src/Components/routes/order.js'); // Changed from 
 // Middleware
 app.use(express.json());
 app.use(cors(corsOptions));
+
+
+app.use(
+  helmet.contentSecurityPolicy({
+    directives: {
+      defaultSrc: ["'self'"],
+      styleSrc: [
+        "'self'",
+        "'unsafe-inline'",
+        "https://fonts.googleapis.com"
+      ],
+      fontSrc: [
+        "'self'",
+        "https://fonts.gstatic.com"
+      ],
+      scriptSrc: [
+        "'self'",
+        "'unsafe-inline'"
+      ],
+      imgSrc: [
+        "'self'",
+        "data:",
+        "https:"
+      ]
+    }
+  })
+);
 
 // DB connect
 connectDB();
