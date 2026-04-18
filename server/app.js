@@ -22,29 +22,40 @@ const OrderRoute = require('./src/Components/routes/order.js'); // Changed from 
 app.use(express.json());
 app.use(cors(corsOptions));
 
-
 app.use(
-  helmet.contentSecurityPolicy({
-    directives: {
-      defaultSrc: ["'self'"],
-      styleSrc: [
-        "'self'",
-        "'unsafe-inline'",
-        "https://fonts.googleapis.com"
-      ],
-      fontSrc: [
-        "'self'",
-        "https://fonts.gstatic.com"
-      ],
-      scriptSrc: [
-        "'self'",
-        "'unsafe-inline'"
-      ],
-      imgSrc: [
-        "'self'",
-        "data:",
-        "https:"
-      ]
+  require("helmet")({
+    contentSecurityPolicy: {
+      directives: {
+        defaultSrc: ["'self'"],
+
+        styleSrc: [
+          "'self'",
+          "'unsafe-inline'",
+          "https://fonts.googleapis.com"
+        ],
+
+        styleSrcElem: [
+          "'self'",
+          "'unsafe-inline'",
+          "https://fonts.googleapis.com"
+        ],
+
+        fontSrc: [
+          "'self'",
+          "https://fonts.gstatic.com"
+        ],
+
+        scriptSrc: [
+          "'self'",
+          "'unsafe-inline'"
+        ],
+
+        imgSrc: [
+          "'self'",
+          "data:",
+          "https:"
+        ]
+      }
     }
   })
 );
