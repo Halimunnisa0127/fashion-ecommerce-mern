@@ -3,12 +3,10 @@
 A full-stack **production-oriented e-commerce application** built using the MERN stack. This project focuses not just on features, but on **scalability, secure payments, and real-world architecture design**.
 
 ---
-
 ## 🚀 Live Demo
 
-* 🌐 Frontend: https://your-frontend.vercel.app
-* 🔗 Backend API: https://your-backend.onrender.com
-
+- 🌐 Frontend: https://fashion-ecommerce-mern.vercel.app  
+- 🔗 Backend API: https://fashion-ecommerce-mern.onrender.com  
 ---
 
 ## 🧠 Project Objective
@@ -124,13 +122,11 @@ To design and develop a **scalable and secure e-commerce platform** that handles
 ---
 
 ## 📸 Screenshots
+ ![Home Page](./client/public/HomePage.png)
+![Product Listing](./client/public/ProductListing.png)
+![Cart Page](./client/public/Cart.png)
+![Payment Checkout](./client/public/Payment.png)
 
-(Add images here)
-
-* Home Page
-* Product Listing
-* Cart Page
-* Payment Checkout
 
 ---
 
