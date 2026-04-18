@@ -5,8 +5,8 @@ A full-stack **production-oriented e-commerce application** built using the MERN
 ---
 ## 🚀 Live Demo
 
-- 🌐 Frontend: https://fashion-ecommerce-mern.vercel.app  
-- 🔗 Backend API: https://fashion-ecommerce-mern.onrender.com  
+- 🌐 Frontend: https://fashion-ecommerce-mern.vercel.app
+- 🔗 Backend API: https://fashion-ecommerce-mern.onrender.com 
 ---
 
 ## 🧠 Project Objective
